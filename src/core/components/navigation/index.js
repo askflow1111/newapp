@@ -5,7 +5,6 @@ const Navigation = props => {
     const { changeCurrentStep, stepsIndex, showConfirm } = props;
     return (
         <div className="navigation">
-
             {stepsIndex > 0 ? (<Button onClick={() => changeCurrentStep(1)} variant="contained" color="primary">
                 Previous
             </Button>) : null}
@@ -13,8 +12,6 @@ const Navigation = props => {
                 (<Button onClick={() => changeCurrentStep(2)} variant="contained" color="primary">Next</Button>) :
                 (<Button onClick={() => changeCurrentStep(3)} variant="contained" color="primary">Cofirm + Print</Button>)
             }
-
-
         </div>
     )
 };

@@ -3,9 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Address from '../../../core/components/address/index';
-import Weight from '../../../core/components/weight/index';
-import ShippingOptions from '../../../core/components/shipping-options/index';
+import Address from '../../../core/components/forms/address/index';
+import Weight from '../../../core/components/forms/weight/index';
+import ShippingOptions from '../../../core/components/forms/shipping-options/index';
 import Confirm from '../../../core/components/confirm/index';
 
 const steps = [

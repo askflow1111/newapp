@@ -1,8 +1,6 @@
 import React from 'react';
-// import logo from './logo.svg';
-import '../../app.css';
-import PropTypes from 'prop-types';
 
+import '../../app.css';
 import Wizard from "../../core/components/wizard/index";
 import Steps from "./steps/index";
 
@@ -44,14 +42,12 @@ class ShippingLabelMaker extends React.Component {
 
   render() {
     return (
-
         <Wizard
           header={this.header}
           steps={Steps}
           wizardContext={this.state.shippingInfo}
           onComplete={this.onComplete}
         />
-
     )
   }
 

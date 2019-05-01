@@ -3,7 +3,6 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-
 const ShippingOption = {
     ground: 1,
     priority: 2
@@ -12,37 +11,15 @@ const ShippingOption = {
 const shippingRate = 0.40;
 
 class Confirm extends React.Component {
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-    //         wizardContext: props.wizardContext,
-    //     }
-    // }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     return ((JSON.stringify(this.state.wizardContext) !== JSON.stringify(nextState.wizardContext)))
-    // }
-
-    // componentDidUpdate(nextProps, nextState) {
-    //     this.setState({
-    //         wizardContext: this.props.wizardContext,
-    //     })
-    // }
-
     renderFieldsSet = (obj, title) => {
         if (obj) {
-
             return (
                 <div className={title}>
                     <FormControl component="fieldset" >
                         <FormLabel component="legend">{title}</FormLabel>
                         <div className="fields">
-
                             {Object.entries(obj).map(item => {
-                                let value = item[1];
                                 return (
-
                                     <TextField
                                         key={item[0]}
                                         id="outlined-read-only-input"
@@ -65,7 +42,6 @@ class Confirm extends React.Component {
         return null;
     }
 
-
     getShippingRate = (weight, shippingOption) => {
         return (weight * shippingRate *
             (shippingOption === ShippingOption.ground ? 1 : 1.5)).toFixed(2);
@@ -75,12 +51,16 @@ class Confirm extends React.Component {
         const { wizardContext } = this.props;
         let shippingCost = this.getShippingRate(wizardContext.weight, Number(wizardContext.shippingOption));
 
+        const fieldsSetData = [
+            { value: wizardContext.from, key: 'From' },
+            { value: wizardContext.to, key: 'To' },
+            { value: { shippingOption: wizardContext.shippingOption === 1 ? "Ground" : "Priority" }, key: 'Shipping Option' },
+            { value: { shippingCost: shippingCost }, key: 'Shipping Cost' },
+        ];
+
         return (
             <div className="confirmContainer">
-                {this.renderFieldsSet(wizardContext.from, 'From')}
-                {this.renderFieldsSet(wizardContext.to, 'To')}
-                {this.renderFieldsSet({ shippingOption: wizardContext.shippingOption == 1 ? "Ground" : "Priority"}, 'Shipping Option')}
-                {this.renderFieldsSet({ shippingCost: shippingCost }, 'Shipping Cost')}
+                {fieldsSetData.map(item => this.renderFieldsSet(item.value, item.key))};
             </div>
         )
     }
